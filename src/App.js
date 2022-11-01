@@ -2,7 +2,9 @@ import Register from "./Register";
 
 function App() {
   return (
-    <Register />
+    <main className="App">
+      <Register />
+    </main>
   )
 }
 
