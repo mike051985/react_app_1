@@ -67,7 +67,7 @@ export default function Login() {
                     required
                 />
                 <button>
-                Sign up
+                Sign In
                 </button>
             </form>
             <p>
