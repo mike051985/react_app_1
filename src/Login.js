@@ -1,28 +1,28 @@
 import React from 'react'
 import { useRef, useState, useEffect } from 'react'
 
-export default function Login() {
-    const userRef = useRef()
+export default function Login(props) {
+    const emailRef = useRef()
     const errRef = useRef()
 
-    const [user, setUser] = useState('');
+    const [email, setEmail] = useState('');
     const [pwd, setPwd] = useState('');
     const [errMsg, setErrMsg] = useState('');
     const [success, setSuccess] = useState(false);
 
     useEffect(() => {
-        userRef.current.focus();
+        emailRef.current.focus();
     }, [])
 
     useEffect(() => {
         setErrMsg('');
-    }, [user, pwd])
+    }, [email, pwd])
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        setUser('');
+        setEmail('');
         setPwd('');
-        console.log(user, pwd);
+        console.log(email, pwd);
         setSuccess(true);
     }
 
@@ -31,28 +31,26 @@ export default function Login() {
     <>
         {success ? (
             <section>
-                <h1>You are logged in!</h1>
+                <h3>You are logged in!</h3>
                 <br />
-                <p>
-                    <a href="#">Go to Home</a>
-                </p>
+                
             </section>
         ) : (
         <section>
             <p ref={errRef} className={errMsg ? "errmsg" :
             "offscreen"} aria-live="assertive">{errMsg}</p>
-            <h1>Sign In</h1>
+            <h1>Login</h1>
             <form onSubmit={handleSubmit}>
-                <label htmlFor="username">
-                    Username:
+                <label htmlFor="email">
+                    Email:
                 </label>
                 <input
-                    type="text"
-                    id="username"
-                    ref={userRef}
+                    type="email"
+                    id="email"
+                    ref={emailRef}
                     autoComplete="off"
-                    onChange={(e) => setUser(e.target.value)}
-                    value={user}
+                    onChange={(e) => setEmail(e.target.value)}
+                    value={email}
                     required
                 />
                 <label htmlFor="password">
@@ -67,16 +65,15 @@ export default function Login() {
                     required
                 />
                 <button>
-                Sign In
+                Login
                 </button>
             </form>
-            <p>
-                Need an Account?<br />
-                <span className="line">
-                    {/*put router link here*/}
-                    <a href="#">Sign Up</a>
-                </span>
-            </p>
+            <button 
+                className="link-btn" 
+                onClick={() => props.onFormSwitch('register')}
+            >
+                Don't have an account? Register here.
+            </button>
         </section>
     )}
     </>

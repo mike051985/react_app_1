@@ -8,7 +8,7 @@ const USER_REGEX = /^[A-z][A-z0-9-_]{3,23}$/;
 const EMAIL_REGEX = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
 const PWD_REGEX = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%]).{8,24}$/;
 
-export default function Register() {
+export default function Register(props) {
     
     const fullnameRef = useRef()
     const userRef = useRef()
@@ -82,10 +82,7 @@ export default function Register() {
     <>
         {success ? (
             <section>
-                <h1>Success!</h1>
-                <p>
-                    <a href="#">Sign In</a>
-                </p>
+                <h3>You are registered!</h3>
             </section>
         ) : (
         <section>
@@ -227,13 +224,12 @@ export default function Register() {
                 Sign up
                 </button>
             </form>
-            <p>
-                Already registered?<br />
-                <span className="line">
-                    {/*put router link here*/}
-                    <a href="#">Sign In</a>
-                </span>
-            </p>
+            <button 
+                className="link-btn" 
+                onClick={() => props.onFormSwitch('login')}
+            >
+                Already have an account? Login here.
+            </button>
         </section>
     )}
     </>
