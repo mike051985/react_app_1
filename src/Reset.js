@@ -1,12 +1,11 @@
 import React from 'react'
 import { useRef, useState, useEffect } from 'react'
 
-export default function Login(props) {
+export default function Reset() {
     const emailRef = useRef()
     const errRef = useRef()
 
     const [email, setEmail] = useState('');
-    const [pwd, setPwd] = useState('');
     const [errMsg, setErrMsg] = useState('');
     const [success, setSuccess] = useState(false);
 
@@ -16,30 +15,26 @@ export default function Login(props) {
 
     useEffect(() => {
         setErrMsg('');
-    }, [email, pwd])
+    }, [email])
 
     const handleSubmit = async (e) => {
         e.preventDefault();
         setEmail('');
-        setPwd('');
-        console.log(email, pwd);
+        console.log(email);
         setSuccess(true);
     }
 
-    
-  return (
+return (
     <>
         {success ? (
             <section>
-                <h3>You are logged in!</h3>
-                <br />
-                
+                <h3>You are successfully reset your password!</h3> 
             </section>
         ) : (
         <section>
             <p ref={errRef} className={errMsg ? "errmsg" :
             "offscreen"} aria-live="assertive">{errMsg}</p>
-            <h1>Login</h1>
+            <h1>Reset Password</h1>
             <form onSubmit={handleSubmit}>
                 <label htmlFor="email">
                     Email:
@@ -53,36 +48,13 @@ export default function Login(props) {
                     value={email}
                     required
                 />
-                <label htmlFor="password">
-                    Password:
-                </label>
-                <input
-                    type="password"
-                    id="password"
-                    autoComplete="off"
-                    onChange={(e) => setPwd(e.target.value)}
-                    value={pwd}
-                    required
-                />
+                
                 <button>
-                Login
+                Reset Password
                 </button>
             </form>
-            <button 
-                className="link-btn" 
-                onClick={() => props.onFormSwitch('reset')}
-            >
-                Forgot your password? Reset here.
-            </button>
-            <button 
-                className="link-btn" 
-                onClick={() => props.onFormSwitch('register')}
-            >
-                Don't have an account? Register here.
-            </button>
         </section>
     )}
     </>
 )
 }
-
