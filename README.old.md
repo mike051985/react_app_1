@@ -1,2 +1,2 @@
 # react_app_1
-Form Validation | React JS | Bootstrap
+Form Validation | React JS 
