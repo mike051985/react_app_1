@@ -31,9 +31,7 @@ export default function Login(props) {
     <>
         {success ? (
             <section>
-                <h3>You are logged in!</h3>
-                <br />
-                
+                <h3>You are logged in!</h3> 
             </section>
         ) : (
         <section>
